@@ -1,7 +1,7 @@
 import type { PostgrestError } from '@supabase/supabase-js'
 
 import type { MergeDeep } from 'type-fest'
-import type { Database as DB } from '@/types/database-generated.types'
+import type { Database as DB } from './database-generated.types'
 
 export type DatabaseGenerated = MergeDeep<
   DB,

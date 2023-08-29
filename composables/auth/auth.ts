@@ -3,7 +3,7 @@ import type { Provider } from '@supabase/gotrue-js' // Import the specific Provi
 export function useAuth() {
   // declaration
   const router = useRouter()
-  const supabase = useSupabaseAuthClient()
+  const supabase = useSupabaseAuthClient<Database>()
   const config = useRuntimeConfig()
   const redirectTo = `${config.public.BASE_URL}/confirm`
 
