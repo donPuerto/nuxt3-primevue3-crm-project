@@ -1,5 +1,9 @@
 /* eslint-disable n/prefer-global/process */
 export default defineNuxtConfig({
+  devtools: { enabled: true },
+  typescript: {
+    typeCheck: true,
+  },
   css: [
     '~/assets/css/main.css',
     'primevue/resources/themes/saga-blue/theme.css',
@@ -16,8 +20,12 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/supabase',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/google-fonts',
   ],
+  piniaPersistedstate: {
+    storage: 'localStorage',
+  },
 
   googleFonts: {
     families: {
@@ -45,7 +53,7 @@ export default defineNuxtConfig({
   supabase: {
     redirectOptions: {
       login: '/auth/signin',
-      callback: '/confirm'
+      callback: '/confirm',
     },
     clientOptions: {
       auth: {
@@ -62,7 +70,7 @@ export default defineNuxtConfig({
       BASE_URL: process.env.BASE_URL || 'http://localhost:3000',
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
-   
+
     },
 
   },
