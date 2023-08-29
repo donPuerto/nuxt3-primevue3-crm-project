@@ -1,29 +1,24 @@
-# Nuxt 3 PrimeVue 3
+# Preview 
 
 We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
-## Setup
+# Tech Stack
 
-Make sure to install the dependencies
+* Nuxt 3 
+* Supabase
+* Pinia
+* Primevue
 
-```bash
-yarn install
-```
 
-## Development
 
-Start the development server on http://localhost:3000
+# Features
 
-```bash
-yarn dev
-```
+## User Management
 
-## Production
+* Social Signin (e.g. google) via Supabase
+* Email/Password  via Supabase
+* Password recovery
+* User roles and permissions (admin, regular user, etc. roles)
+* User Email captured on initial login
+* Edit Account Name from Account Page
 
-Build the application for production:
-
-```bash
-yarn build
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
