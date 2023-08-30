@@ -4,11 +4,8 @@ definePageMeta({
   layout: 'auth',
 })
 
-const { updateProfile } = useUseProfilesAPI()
-
 function handleConfirmationButton() {
-  updateProfile()
-  // navigateTo('/dashboard/guest')
+  navigateTo('/auth/signin')
 }
 </script>
 
