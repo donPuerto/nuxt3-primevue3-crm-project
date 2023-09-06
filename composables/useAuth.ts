@@ -8,6 +8,10 @@ export function useAuth() {
   const config = useRuntimeConfig()
   const redirectTo = `${config.public.BASE_URL}/confirm`
   const { showToast } = useToastComponent()
+  const authResponse = ref({
+    message: '',
+    error: '',
+  })
 
   // async function rememberMeLogin() {
   //   const token = localStorage.getItem('rememberMeToken')
@@ -38,20 +42,15 @@ export function useAuth() {
           emailRedirectTo: redirectTo,
         },
       })
-      showToast()
-      // eslint-disable-next-line max-statements-per-line
-      if (error) { throw error }
 
-      else {
-        if (data.user) {
-          console.log(data)
-          console.log(data.user.id)
-          userStore.updateUserId(data.user.id)
-        }
-      }
+      if (error)
+        throw error
+      else
+        authResponse.value.message = 'Signup was successful!'
     }
     catch (error) {
-      console.error('Error:', error)
+      authResponse.value.error = (error as { message?: string })?.message || 'An unknown error occurred.'
+      console.log('signUp', authResponse.value.error)
     }
   }
 
@@ -66,7 +65,7 @@ export function useAuth() {
         console.error('Sign-in error:', error)
     }
     catch (error) {
-      console.error('Error:', error)
+      authResponse.value.message = 'Signin was successful!'
     }
   }
 
@@ -93,5 +92,5 @@ export function useAuth() {
     await router.push({ path: '/auth/signin' })
   }
 
-  return { signInWithOAuth, signInWithPassword, signUp, signOut }
+  return { signInWithOAuth, signInWithPassword, signUp, signOut, authResponse }
 }

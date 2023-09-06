@@ -27,7 +27,6 @@ const { signInWithOAuth } = useAuth()
 // Pinia
 const { getContainerCustomClass, socialAuthIcons } = useCustomClassesStore()
 
-// Methods
 function dynamicComponent(component: Provider) {
   switch (component) {
     case 'google':

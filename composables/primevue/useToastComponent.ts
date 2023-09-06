@@ -2,12 +2,18 @@ import { useToast } from 'primevue/usetoast'
 
 export function useToastComponent() {
   const toast = useToast()
-  function showToast() {
-    console.log('Show toast')
-    toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 })
+  const showToast = (severity, summary, detail, group, life) => {
+    const toast = useToast()
+    toast.add({
+      severity, summary, detail, group, life,
+    })
+  }
+  const clear = () => {
+    toast.removeAllGroups()
   }
 
   return {
     showToast,
+    clear,
   }
 }

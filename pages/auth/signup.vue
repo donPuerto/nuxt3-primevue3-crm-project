@@ -9,6 +9,24 @@ import {
 
 } from '@vuelidate/validators'
 
+interface ToastConfigPosition {
+  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' | 'center' | undefined
+}
+
+interface ToastConfigGroup {
+  group?: string | undefined
+}
+
+interface ToastConfigBasic {
+  severity: 'success' | 'info' | 'warn' | 'error' | undefined
+  summary?: string
+  detail?: string
+  life?: number
+}
+
+interface ToastConfig extends ToastConfigBasic,
+  ToastConfigPosition, ToastConfigGroup {}
+
 // Meta
 definePageMeta({
   layout: 'auth',
@@ -111,7 +129,7 @@ const v$ = useVuelidate(rules, signUpData)
 const router = useRouter()
 
 // Composables
-const { signUp } = useAuth()
+const { signUp, authResponse } = useAuth()
 
 // Initials
 const { togglePersistSession } = useSupabaseFactory()
@@ -145,13 +163,16 @@ function handleRegister(isFormValid: boolean) {
     //   signInWithEmailAndPassword(state.email, state.password, rememberMe.value)
     // else
     //   resetFormField()
-    console.log('Form is valid', signUpData)
+
     signUp(signUpData)
   }
   catch (error) {
     console.error('An error occurred:', error)
   }
 }
+onMounted(() => {
+  console.log('authResponse', authResponse.value)
+})
 
 function resetFormField() {
   signUpData.firstName = ''
@@ -171,6 +192,28 @@ function navigateToLogin() {
 function toggleSession() {
   togglePersistSession()
   console.log('togglePersistSession', togglePersistSession)
+}
+
+// Inject the provided functions with explicit types
+const toastFunctions = inject<{
+  show?: (toastConfig: ToastConfig) => void
+  clear?: () => void
+}>('toastFunctions') || {}
+
+function showToast() {
+  const toastConfig = {
+    severity: 'info',
+    summary: 'Info Message',
+    detail: 'Message Content',
+    position: 'top-center',
+    group: 'tc',
+    life: 3000,
+  }
+  toastFunctions.show?.(toastConfig)
+}
+
+function clearToast() {
+  toastFunctions.clear?.()
 }
 </script>
 
@@ -194,13 +237,6 @@ function toggleSession() {
       "
     >
       <Card class="border-round-lg p-2">
-        <!-- <template #header>
-        <div class="flex justify-content-center align-items-center mt-3">
-          <div>
-            <IconsMyLogo width="80" height="80" />
-          </div>
-        </div>
-      </template> -->
         <template #title>
           Get Started
         </template>
@@ -209,6 +245,7 @@ function toggleSession() {
         </template>
 
         <template #content>
+          <PrimevueToastMessage />
           <OAuthSocialIcons
             :social-icons-data="socialIconsData"
           />
