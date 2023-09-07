@@ -1,3 +1,10 @@
+// Import types from other folder
+
+// components
+export * from './components/toast.types';
+// auth
+export * from './auth/signup.types';
+
 
 interface iconDimensions {
     width: number;
@@ -19,17 +26,6 @@ interface Login {
   password: string;
 }
 
-interface SignUp {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  password: {
-    password: string;
-    confirmPassword: string;
-  };
-  // accepted: boolean | string;
-}
 
 interface ProfileIsActiveAndUserStatus {
   is_active: boolean | null

@@ -7,7 +7,7 @@ export function useAuth() {
   const supabase = useSupabaseAuthClient<Database>()
   const config = useRuntimeConfig()
   const redirectTo = `${config.public.BASE_URL}/confirm`
-  const { showToast } = useToastComponent()
+
   const authResponse = ref({
     message: '',
     error: '',
