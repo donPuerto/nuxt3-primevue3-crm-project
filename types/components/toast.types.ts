@@ -1,3 +1,8 @@
+interface ToastFunctions {
+  show: (toastConfig: ToastConfig) => void
+  clear: () => void
+}
+
 interface ToastConfigPosition {
   position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' | 'center' | undefined
 }

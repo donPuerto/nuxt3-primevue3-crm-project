@@ -8,7 +8,7 @@ definePageMeta({
 })
 
 // Validation
-const state: Login = reactive({
+const state: Signin = reactive({
   email: '',
   password: '',
 })

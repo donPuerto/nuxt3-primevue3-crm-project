@@ -4,6 +4,7 @@
 export * from './components/toast.types';
 // auth
 export * from './auth/signup.types';
+export * from './auth/signin.types';
 
 
 interface iconDimensions {
@@ -21,10 +22,6 @@ interface CustomContainerItemClass {
 }
 
 
-interface Login {
-  email: string;
-  password: string;
-}
 
 
 interface ProfileIsActiveAndUserStatus {

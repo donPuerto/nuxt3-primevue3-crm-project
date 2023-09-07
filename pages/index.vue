@@ -1,7 +1,6 @@
 <script setup>
 // Composables
 const { signOut } = useAuth()
-const { showToast } = useToastComponent()
 
 function show() {
   console.log('Show Toast')

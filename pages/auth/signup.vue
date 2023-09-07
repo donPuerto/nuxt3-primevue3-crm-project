@@ -173,29 +173,6 @@ function navigateToLogin() {
 
 function toggleSession() {
   togglePersistSession()
-  console.log('togglePersistSession', togglePersistSession)
-}
-
-// Inject the provided functions with explicit types
-const toastFunctions = inject<{
-  show?: (toastConfig: ToastConfig) => void
-  clear?: () => void
-}>('toastFunctions') || {}
-
-function showToast() {
-  const toastConfig = {
-    severity: 'info',
-    summary: 'Info Message',
-    detail: 'Message Content',
-    position: 'top-center',
-    group: 'tc',
-    life: 3000,
-  }
-  toastFunctions.show?.(toastConfig)
-}
-
-function clearToast() {
-  toastFunctions.clear?.()
 }
 </script>
 
@@ -227,6 +204,7 @@ function clearToast() {
         </template>
 
         <template #content>
+          <Test />
           <PrimevueToastMessage />
           <OAuthSocialIcons
             :social-icons-data="socialIconsData"
