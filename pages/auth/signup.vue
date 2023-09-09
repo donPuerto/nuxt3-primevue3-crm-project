@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Imports
 import { useVuelidate } from '@vuelidate/core'
 import {
   email,
@@ -8,13 +9,30 @@ import {
   sameAs,
 
 } from '@vuelidate/validators'
+import { useToast } from 'primevue/usetoast'
 
 // Meta
 definePageMeta({
   layout: 'auth',
 })
 
-// Validation
+// Declaration
+const user = useSupabaseUser()
+const toast = useToast()
+const submitted = ref<boolean>(false)
+const { signUp } = useAuth()
+const socialIconsData = [
+  {
+    name: 'google',
+  },
+  {
+    name: 'github',
+  },
+  // Add more objects for other icons as needed
+  // You can also include 'IconsTwitter', 'IconsFacebook', etc. in the socialIconsData array
+]
+
+// Form Validation
 const signUpData: SignUp = reactive({
   firstName: '',
   lastName: '',
@@ -110,51 +128,35 @@ const v$ = useVuelidate(rules, signUpData)
 // Router
 const router = useRouter()
 
-// Composables
-const { signUp, authResponse } = useAuth()
-
-// Initials
-const { togglePersistSession } = useSupabaseFactory()
-
-const socialIconsData = [
-  {
-    name: 'google',
-  },
-  {
-    name: 'github',
-  },
-  // Add more objects for other icons as needed
-  // You can also include 'IconsTwitter', 'IconsFacebook', etc. in the socialIconsData array
-]
-
 // Data
-const submitted = ref<boolean>(false)
 
 // Methods
-function handleRegister(isFormValid: boolean) {
-  // If submitted, set to true
+async function handleRegister(isFormValid: boolean) {
   submitted.value = true
 
   if (!isFormValid) {
-    console.log('Form Invalid')
+    toast.add({
+      severity: 'error',
+      summary: 'Error Message',
+      detail: 'Form Validation Errors Found',
+      life: 3000,
+    })
     return
   }
 
-  try {
-    // if (isFormValid)
-    //   signInWithEmailAndPassword(state.email, state.password, rememberMe.value)
-    // else
-    //   resetFormField()
-
-    signUp(signUpData)
+  const response = await signUp(signUpData)
+  if (response.success) {
+    console.log('response success')
   }
-  catch (error) {
-    console.error('An error occurred:', error)
+  else {
+    toast.add({
+      severity: 'error',
+      summary: 'Error Message',
+      detail: response.error,
+      life: 3000,
+    })
   }
 }
-onMounted(() => {
-  console.log('authResponse', authResponse.value)
-})
 
 function resetFormField() {
   signUpData.firstName = ''
@@ -171,9 +173,17 @@ function navigateToLogin() {
   router.push('/auth/signin')
 }
 
-function toggleSession() {
-  togglePersistSession()
-}
+// Mounted
+onMounted(() => {
+  console.log('Signup Page')
+})
+
+// Watch if the user object is not null
+watchEffect(async () => {
+  console.log('useSupabaseUser', user.value)
+  if (user.value)
+    await router.push('/auth/signup')
+})
 </script>
 
 <template>
@@ -204,8 +214,8 @@ function toggleSession() {
         </template>
 
         <template #content>
-          <Test />
-          <PrimevueToastMessage />
+          <Toast />
+
           <OAuthSocialIcons
             :social-icons-data="socialIconsData"
           />

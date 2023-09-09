@@ -2,32 +2,16 @@ import type { Provider } from '@supabase/gotrue-js' // Import the specific Provi
 
 export function useAuth() {
   // declaration
-  const userStore = useUserStore()
+
   const router: any = useRouter()
   const supabase = useSupabaseAuthClient<Database>()
   const config = useRuntimeConfig()
   const redirectTo = `${config.public.BASE_URL}/confirm`
 
-  const authResponse = ref({
-    message: '',
-    error: '',
-  })
-
-  // async function rememberMeLogin() {
-  //   const token = localStorage.getItem('rememberMeToken')
-  //   if (token) {
-  //     try {
-  //       const { user, error } = await supabase.auth.api.getUser(token)
-  //       if (!error && user)
-  //         console.log('Logged in:', user)
-  //     }
-  //     catch (error) {
-  //       console.error('Error:', error)
-  //     }
-  //   }
-  // }
+  const testMessage: Ref<string> = ref('Hello World')
 
   const signUp = async (signUpData: SignUp) => {
+    console.log('signUp')
     try {
       const { data, error } = await supabase.auth.signUp({
         email: signUpData.email,
@@ -46,11 +30,13 @@ export function useAuth() {
       if (error)
         throw error
       else
-        authResponse.value.message = 'Signup was successful!'
+        return { success: true, error: null }
     }
     catch (error) {
-      authResponse.value.error = (error as { message?: string })?.message || 'An unknown error occurred.'
-      console.log('signUp', authResponse.value.error)
+      return {
+        success: false,
+        error: (error as { message?: string })?.message || 'An unknown error occurred.',
+      }
     }
   }
 
@@ -62,10 +48,15 @@ export function useAuth() {
       })
 
       if (error)
-        console.error('Sign-in error:', error)
+        throw error
+      else
+        return { success: true, error: null }
     }
     catch (error) {
-      authResponse.value.message = 'Signin was successful!'
+      return {
+        success: false,
+        error: (error as { message?: string })?.message || 'An unknown error occurred.',
+      }
     }
   }
 
@@ -77,10 +68,8 @@ export function useAuth() {
       },
     })
     if (error)
-      return { error }
-
+      throw error
     else
-    //   console.log('data', data)
       return { data }
   }
 
@@ -92,5 +81,12 @@ export function useAuth() {
     await router.push({ path: '/auth/signin' })
   }
 
-  return { signInWithOAuth, signInWithPassword, signUp, signOut, authResponse }
+  return {
+    testMessage,
+    signInWithOAuth,
+    signInWithPassword,
+    signUp,
+    signOut,
+
+  }
 }

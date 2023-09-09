@@ -46,10 +46,6 @@ function dynamicComponent(component: Provider) {
 function socialAuthHandler(socialOAuth: Provider) {
   signInWithOAuth(socialOAuth)
 }
-
-onMounted(() => {
-  console.log('mounted')
-})
 </script>
 
 <template>

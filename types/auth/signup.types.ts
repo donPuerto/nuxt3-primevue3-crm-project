@@ -9,3 +9,8 @@ interface SignUp {
   }
   // accepted: boolean | string;
 }
+
+interface AuthResponse {
+  success: boolean | null
+  error: string | null
+}

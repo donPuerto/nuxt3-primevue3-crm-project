@@ -1,17 +1,24 @@
 <script lang="ts" setup>
-const message = ref('Hello from Child')
+import { provide, ref } from 'vue'
 
-function changeMessage() {
-  message.value = 'New Message from Child'
+const location = ref('North Pole')
+
+function updateLocation() {
+  location.value = 'South Pole'
 }
 
-provide('message', message)
+provide('location', {
+  location,
+  updateLocation,
+})
 </script>
 
 <template>
-  <div>Test Component</div>
-  <Button @click="changeMessage">
-    Change Message
+  <div>
+    Test Component
+  </div>
+  <Button>
+    Show
   </Button>
 </template>
 
