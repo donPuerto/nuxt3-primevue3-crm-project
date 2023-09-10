@@ -11,7 +11,6 @@ export function useAuth() {
   const testMessage: Ref<string> = ref('Hello World')
 
   const signUp = async (signUpData: SignUp) => {
-    console.log('signUp')
     try {
       const { data, error } = await supabase.auth.signUp({
         email: signUpData.email,
@@ -27,10 +26,20 @@ export function useAuth() {
         },
       })
 
-      if (error)
+      if (error) {
+        // Handle the error that occurred during signup
         throw error
-      else
-        return { success: true, error: null }
+      }
+
+      if (data.user) {
+        // Handle the case where a user already exists
+        const customError = 'You already signed up, please log in.'
+        // router.push('/auth/signin')
+        throw new Error(customError)
+      }
+
+      // Return a success response if no errors occurred
+      return { success: true, error: null }
     }
     catch (error) {
       return {
