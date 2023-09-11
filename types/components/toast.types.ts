@@ -14,7 +14,7 @@ interface ToastConfigGroup {
 interface ToastConfigBasic {
   severity: 'success' | 'info' | 'warn' | 'error' | undefined
   summary?: string
-  detail?: string
+  detail?: string | null
   life?: number
 }
 

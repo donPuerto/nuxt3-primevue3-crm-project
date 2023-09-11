@@ -31,13 +31,6 @@ export function useAuth() {
         throw error
       }
 
-      if (data.user) {
-        // Handle the case where a user already exists
-        const customError = 'You already signed up, please log in.'
-        // router.push('/auth/signin')
-        throw new Error(customError)
-      }
-
       // Return a success response if no errors occurred
       return { success: true, error: null }
     }

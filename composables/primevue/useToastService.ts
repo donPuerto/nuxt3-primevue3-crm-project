@@ -1,6 +1,6 @@
 import { useToast } from 'primevue/usetoast'
 
-export function useToastHandler() {
+export function useToastService() {
   const toast = useToast()
 
   function show(toastConfig: ToastConfig) {
@@ -18,6 +18,6 @@ export function useToastHandler() {
   return {
     show,
     clear,
-    toast,
+
   }
 }

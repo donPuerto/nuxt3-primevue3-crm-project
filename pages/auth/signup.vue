@@ -9,7 +9,6 @@ import {
   sameAs,
 
 } from '@vuelidate/validators'
-import { useToast } from 'primevue/usetoast'
 
 // Meta
 definePageMeta({
@@ -18,19 +17,10 @@ definePageMeta({
 
 // Declaration
 const user = useSupabaseUser()
-const toast = useToast()
+const toastService = useToastService()
+const { resetObjectProperties } = useUtilService()
 const submitted = ref<boolean>(false)
 const { signUp } = useAuth()
-const socialIconsData = [
-  {
-    name: 'google',
-  },
-  {
-    name: 'github',
-  },
-  // Add more objects for other icons as needed
-  // You can also include 'IconsTwitter', 'IconsFacebook', etc. in the socialIconsData array
-]
 
 // Form Validation
 const signUpData: SignUp = reactive({
@@ -42,7 +32,7 @@ const signUpData: SignUp = reactive({
     password: '',
     confirmPassword: '',
   },
-  // accepted: '',
+  accepted: false,
 })
 
 // Computed
@@ -115,10 +105,9 @@ const rules = computed(() => {
         sameAsPassword: sameAs(signUpData.password.password),
       },
     },
-    // accepted: {
-    //   required: helpers.withMessage('Terms and Conditions is required.', required),
-
-    // },
+    accepted: {
+      required: helpers.withMessage('Terms and Conditions is required.', required),
+    },
   }
 })
 
@@ -131,25 +120,27 @@ const router = useRouter()
 // Data
 
 // Methods
-async function handleRegister(isFormValid: boolean) {
+async function handleSignup(isFormValid: boolean) {
   submitted.value = true
 
   if (!isFormValid) {
-    toast.add({
+    toastService.show({
       severity: 'error',
       summary: 'Error Message',
       detail: 'Form Validation Errors Found',
       life: 3000,
     })
+
     return
   }
 
   const response = await signUp(signUpData)
   if (response.success) {
-    console.log('response success')
+    navigateToLogin()
+    resetFormField()
   }
   else {
-    toast.add({
+    toastService.show({
       severity: 'error',
       summary: 'Error Message',
       detail: response.error,
@@ -159,13 +150,7 @@ async function handleRegister(isFormValid: boolean) {
 }
 
 function resetFormField() {
-  signUpData.firstName = ''
-  signUpData.lastName = ''
-  signUpData.username = ''
-  signUpData.email = ''
-  signUpData.password.password = ''
-  signUpData.password.confirmPassword = ''
-  // state.accepted = false
+  resetObjectProperties(signUpData)
   submitted.value = false
 }
 
@@ -188,14 +173,6 @@ watchEffect(async () => {
 
 <template>
   <div>
-    <div class="flex justify-content-center align-items-center mb-1">
-      <div>
-        <IconsMyLogo
-          width="80"
-          height="80"
-        />
-      </div>
-    </div>
     <div
       class="
         card
@@ -207,6 +184,14 @@ watchEffect(async () => {
     >
       <Card class="border-round-lg p-2">
         <template #title>
+          <div class="flex justify-content-center align-items-center my-2">
+            <div>
+              <IconsMyLogo
+                width="80"
+                height="80"
+              />
+            </div>
+          </div>
           Get Started
         </template>
         <template #subtitle>
@@ -216,18 +201,7 @@ watchEffect(async () => {
         <template #content>
           <Toast />
 
-          <OAuthSocialIcons
-            :social-icons-data="socialIconsData"
-          />
-          <!-- <IconsGoogle /> -->
-          <Divider
-            align="center"
-            class="py-2"
-          >
-            <span class="text-400 text-sm font-medium">OR</span>
-          </Divider>
-
-          <form class="p-fluid mt-3" @submit.prevent="handleRegister(!v$.$invalid)">
+          <form class="p-fluid mt-3" @submit.prevent="handleSignup(!v$.$invalid)">
             <!-- First and Last Name -->
             <div
               class="grid"
@@ -418,7 +392,7 @@ watchEffect(async () => {
             </div>
 
             <!-- Terms and Conditions -->
-            <!-- <div class="field-checkbox">
+            <div class="field-checkbox">
               <Checkbox
                 id="accepted"
                 v-model="v$.accepted.$model"
@@ -430,27 +404,25 @@ watchEffect(async () => {
                 for="accepted"
                 :class="{ 'p-error': v$.accepted.$invalid && submitted }"
               >I agree to the terms and conditions*</label>
-            </div> -->
+            </div>
 
             <!-- Submit Button -->
             <Button
               type="submit"
-              label="Submit"
+              label="Sign Up"
               class="mt-4"
+            />
+            <AuthRedirectMessage
+              class="mb-2"
+              router-path="/auth/signin"
+              message="Already have an account?"
+              action-text="Sign in now..."
             />
           </form>
         </template>
 
         <template #footer>
-          <div class="flex justify-content-center align-items-center">
-            <p>
-              Already have an account?
-              <span
-                class="cursor-pointer underline hover"
-                @click="navigateToLogin"
-              >Login Now</span>
-            </p>
-          </div>
+          <TermsAndPolicy class="" />
         </template>
       </Card>
     </div>

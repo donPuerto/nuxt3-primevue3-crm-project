@@ -165,8 +165,14 @@ function navigateToRegister() {
           <!-- Submit Button -->
           <Button
             type="submit"
-            label="Submit"
+            label="Sign In"
             class="mt-3"
+          />
+          <AuthRedirectMessage
+            class="mb-2"
+            router-path="/auth/signup"
+            message="'Don't have an account yet?'"
+            action-text="Sign up now..."
           />
         </form>
       </template>
