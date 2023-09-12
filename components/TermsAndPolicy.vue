@@ -1,18 +1,19 @@
 <script lang="ts" setup>
+const router = useRouter()
 function openTermsOfService() {
-  window.open('https://www.supabase.io/terms', '_blank')
+  window.open('/auth/terms', '_blank')
 }
 
 function openPrivacyPolicy() {
-  window.open('https://www.supabase.io/privacy', '_blank')
+  window.open('/auth/privacy', '_blank')
 }
 </script>
 
 <template>
   <div>
     By proceeding, you consent to OneDP app
-    <a target="_blank" class="link" @click="openTermsOfService">Terms of Service</a> and
-    <a target="_blank" class="link" @click="openPrivacyPolicy">Privacy Policy</a>, as well as to receive occasional emails containing updates.
+    <a class="link" @click="openTermsOfService">Terms of Service</a> and
+    <a class="link" @click="openPrivacyPolicy">Privacy Policy</a>, as well as to receive occasional emails containing updates.
   </div>
 </template>
 

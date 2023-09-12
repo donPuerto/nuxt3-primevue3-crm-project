@@ -3,8 +3,7 @@
 </script>
 
 <template>
-  <div>
-    default layout
+  <div class="flex-wrap align-items-center justify-content-center">
     <slot />
   </div>
 </template>

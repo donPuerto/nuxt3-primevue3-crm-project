@@ -13,7 +13,7 @@ function navigateToPage() {
 
 <template>
   <div class="flex justify-content-center align-items-center">
-    <p>
+    <p class="centered-message">
       {{ message }}
       <span
         class="link"
@@ -24,6 +24,10 @@ function navigateToPage() {
 </template>
 
 <style scoped>
+.centered-message {
+  text-align: center;
+  text-justify: distribute; /* Center-align the text within the <p> element */
+}
 .link {
   text-decoration: underline;
   color: #007BFF; /* Change to your desired link color */

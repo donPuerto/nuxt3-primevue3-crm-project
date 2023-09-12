@@ -7,25 +7,32 @@ definePageMeta({
   layout: 'auth',
 })
 
-// Validation
-const state: Signin = reactive({
+// Declaration
+const toastService = useToastService()
+const { resetObjectProperties } = useUtilService()
+const submitted = ref<boolean>(false)
+const rememberMe = ref<boolean>(false)
+const { signInWithPassword } = useAuth()
+
+// Form Validation
+const signInData: Signin = reactive({
   email: '',
   password: '',
 })
 
+// Computed
 const rules = {
   email: { required, email },
   password: { required },
 }
 
-const v$ = useVuelidate(rules, state)
-const submitted = ref<boolean>(false)
+// Vuelidate
+const v$ = useVuelidate(rules, signInData)
 
 // Router
 const router = useRouter()
-// Initials
-const rememberMe = ref<boolean>(false)
 
+// Initials
 const socialIconsData = [
   {
     name: 'google',
@@ -34,43 +41,66 @@ const socialIconsData = [
     name: 'github',
   },
   // Add more objects for other icons as needed
-  // You can also include 'IconsTwitter', 'IconsFacebook', etc. in the socialIconsData array
 ]
 
-// Composables
-const { signInWithPassword } = useAuth()
-
 // Methods
-function handleLogin(isFormValid: boolean) {
+async function handleSignin(isFormValid: boolean) {
   // Submitterd to turn true, because I submitted the form
   submitted.value = true
-  console.log('isFormValid', isFormValid)
-  try {
-    if (isFormValid)
-      signInWithPassword(state.email, state.password, rememberMe.value)
-    else
-      resetFormField()
+  if (!isFormValid) {
+    toastService.show({
+      severity: 'error',
+      summary: 'Error Message',
+      detail: 'Form Validation Errors Found',
+      life: 3000,
+    })
+    return
   }
-  catch (error) {
-    console.error('An error occurred:', error)
+
+  const response = await signInWithPassword(signInData.email, signInData.password)
+  console.log('response', response)
+  if (response.success) {
+    navigateToProfile()
+    resetFormField()
+  }
+  else {
+    toastService.show({
+      severity: 'error',
+      summary: 'Error Message',
+      detail: response.error,
+      life: 3000,
+    })
   }
 }
 
+function navigateToProfile() {
+  router.push('/dashboard/profile')
+}
+
 function resetFormField() {
-  state.email = ''
-  state.password = ''
+  resetObjectProperties(signInData)
   submitted.value = false
 }
 
 function navigateToRegister() {
   router.push('/auth/register')
 }
+
+onMounted(() => {
+  resetObjectProperties(signInData)
+})
 </script>
 
 <template>
   <div>
-    <pre />
-    <div class="flex justify-content-center align-items-center mb-1">
+    <div
+      class="
+        flex
+        justify-content-center
+        align-items-center
+        mt-5
+        "
+    >
       <div>
         <IconsMyLogo
           width="80"
@@ -79,7 +109,7 @@ function navigateToRegister() {
       </div>
     </div>
 
-    <Card class="md:w-28rem px-3 md:px-4 py-4 border-round-md shadow-2">
+    <Card class="md:w-28rem px-3 md:px-4 py-4 border-round-md shadow-3">
       <!-- <template #header>
         <div class="flex justify-content-center align-items-center mt-3">
           <div>
@@ -95,6 +125,7 @@ function navigateToRegister() {
       </template>
 
       <template #content>
+        <Toast />
         <OAuthSocialIcons
           :social-icons-data="socialIconsData"
         />
@@ -106,14 +137,14 @@ function navigateToRegister() {
           <span class="text-400 text-sm font-medium">OR</span>
         </Divider>
 
-        <form class="p-fluid mt-4" @submit.prevent="handleLogin(!v$.$invalid)">
+        <form class="p-fluid mt-4" @submit.prevent="handleSignin(!v$.$invalid)">
           <!-- Email -->
           <div class="field">
             <span class="p-float-label ">
 
               <InputText
                 id="email"
-                v-model="v$.email.$model"
+                v-model.trim="v$.email.$model"
                 :class="{ 'p-invalid': v$.email.$invalid && submitted }"
                 aria-describedby="email-error"
               />
@@ -133,7 +164,7 @@ function navigateToRegister() {
 
               <Password
                 id="password"
-                v-model="v$.password.$model"
+                v-model.trim="v$.password.$model"
                 :class="{ 'p-invalid': v$.password.$invalid && submitted }"
                 :feedback="false"
                 toggle-mask

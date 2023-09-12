@@ -32,7 +32,7 @@ const signUpData: SignUp = reactive({
     password: '',
     confirmPassword: '',
   },
-  accepted: false,
+
 })
 
 // Computed
@@ -105,9 +105,7 @@ const rules = computed(() => {
         sameAsPassword: sameAs(signUpData.password.password),
       },
     },
-    accepted: {
-      required: helpers.withMessage('Terms and Conditions is required.', required),
-    },
+
   }
 })
 
@@ -130,7 +128,6 @@ async function handleSignup(isFormValid: boolean) {
       detail: 'Form Validation Errors Found',
       life: 3000,
     })
-
     return
   }
 
@@ -177,12 +174,12 @@ watchEffect(async () => {
       class="
         card
         flex
-        align-items-center
         justify-content-center
-        shadow-2
+        align-items-center
+        mt-5
       "
     >
-      <Card class="border-round-lg p-2">
+      <Card class="md:w-30rem  md:px-3 border-round-md shadow-3">
         <template #title>
           <div class="flex justify-content-center align-items-center my-2">
             <div>
@@ -389,21 +386,6 @@ watchEffect(async () => {
                   </small>
                 </div>
               </div>
-            </div>
-
-            <!-- Terms and Conditions -->
-            <div class="field-checkbox">
-              <Checkbox
-                id="accepted"
-                v-model="v$.accepted.$model"
-                name="accepted"
-                value="accepted"
-                :class="{ 'p-invalid': v$.accepted.$invalid && submitted }"
-              />
-              <label
-                for="accepted"
-                :class="{ 'p-error': v$.accepted.$invalid && submitted }"
-              >I agree to the terms and conditions*</label>
             </div>
 
             <!-- Submit Button -->

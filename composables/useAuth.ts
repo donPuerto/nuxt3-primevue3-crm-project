@@ -12,7 +12,7 @@ export function useAuth() {
 
   const signUp = async (signUpData: SignUp) => {
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: signUpData.email,
         password: signUpData.password.password,
         options: {
@@ -42,7 +42,9 @@ export function useAuth() {
     }
   }
 
-  const signInWithPassword = async (email: string, password: string, rememberMe: boolean) => {
+  const signInWithPassword = async (email: string, password: string) => {
+    console.log('email', email)
+    console.log('password', password)
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -51,8 +53,9 @@ export function useAuth() {
 
       if (error)
         throw error
-      else
-        return { success: true, error: null }
+
+      // Return a success response if no errors occurred
+      return { success: true, error: null }
     }
     catch (error) {
       return {

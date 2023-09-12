@@ -7,7 +7,7 @@ interface SignUp {
     password: string
     confirmPassword: string
   }
-  accepted: boolean | string
+
 }
 
 interface AuthResponse {
