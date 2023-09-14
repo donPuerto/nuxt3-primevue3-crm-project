@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'stylesheet', href: '/theme/theme-light/indigo/theme.css' },
       ],
     },
   },
@@ -16,10 +17,9 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
   css: [
-    'primevue/resources/themes/lara-light-blue/theme.css',
-    // 'primevue/resources/primevue.css',
-    // 'primeicons/primeicons.css',
-    // 'primeflex/primeflex.css',
+    'primevue/resources/primevue.css',
+    'primeicons/primeicons.css',
+    'primeflex/primeflex.css',
     '~/assets/styles.scss',
   ],
 

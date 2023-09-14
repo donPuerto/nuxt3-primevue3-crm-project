@@ -4,7 +4,7 @@ import { email, required } from '@vuelidate/validators'
 
 // Meta
 definePageMeta({
-  layout: 'auth',
+  layout: 'empty',
 })
 
 // Declaration
@@ -89,56 +89,42 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <!-- Flex centering/alinin into center position -->
+  <div
+    class="px-5 min-h-screen flex justify-content-center align-items-center"
+  >
+    <!-- Card  -->
     <div
-      class="
-        flex
-        justify-content-center
-        align-items-center
-        mt-5
-        "
+      class="border-1 surface-border surface-card border-round py-6 px-5 md:px-7 z-1"
+      style="max-width: 500px;"
     >
-      <div>
-        <IconsMyLogo
-          width="80"
-          height="80"
-        />
-      </div>
-    </div>
-
-    <Card class="md:w-28rem px-3 md:px-4 py-4 border-round-md shadow-3">
-      <!-- <template #header>
-        <div class="flex justify-content-center align-items-center mt-3">
-          <div>
-            <IconsMyLogo width="80" height="80" />
-          </div>
+      <div class="mb-4">
+        <div class="text-1000 text-xl font-bold">
+          Welcome Back!
         </div>
-      </template> -->
-      <template #title>
-        Welcome Back!
-      </template>
-      <template #subtitle>
-        Login to your account
-      </template>
 
-      <template #content>
-        <Toast />
-        <OAuthSocialIcons
-          :social-icons-data="socialIconsData"
-        />
-        <!-- <IconsGoogle /> -->
-        <Divider
-          align="center"
-          class="py-2"
-        >
-          <span class="text-400 text-sm font-medium">OR</span>
-        </Divider>
+        <span>
+          Signin to your account
+        </span>
+      </div>
 
-        <form class="p-fluid mt-4" @submit.prevent="handleSignin(!v$.$invalid)">
+      <!-- Auth Social Icons -->
+      <OAuthSocialIcons
+        :social-icons-data="socialIconsData"
+      />
+
+      <Divider
+        align="center"
+        class="mt-3"
+      >
+        <span class="text-400 text-sm font-medium">OR</span>
+      </Divider>
+
+      <div class="flex flex-column">
+        <form class="p-fluid" @submit.prevent="handleSignin(!v$.$invalid)">
           <!-- Email -->
-          <div class="field">
+          <div class="field mt-2">
             <span class="p-float-label ">
-
               <InputText
                 id="email"
                 v-model.trim="v$.email.$model"
@@ -156,9 +142,8 @@ onMounted(() => {
           </div>
 
           <!-- Password -->
-          <div class="field mt-4">
-            <span class="p-float-label ">
-
+          <div class="field">
+            <span class="p-float-label mt-4">
               <Password
                 id="password"
                 v-model.trim="v$.password.$model"
@@ -194,17 +179,17 @@ onMounted(() => {
           <Button
             type="submit"
             label="Sign In"
-            class="mt-3"
+            class="mt-2"
           />
           <AuthRedirectMessage
-            class="mb-2"
+            class="mt-2"
             router-path="/auth/signup"
-            message="'Don't have an account yet?'"
+            message="Don't have an account yet?"
             action-text="Sign up now..."
           />
         </form>
-      </template>
-    </Card>
+      </div>
+    </div>
     <div class="flex justify-content-center align-items-center mt-3">
       <DynamicYear
         :font-size="{ class: 'text-xs' }"

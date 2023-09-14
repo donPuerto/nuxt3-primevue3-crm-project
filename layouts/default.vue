@@ -70,10 +70,16 @@ function isOutsideClicked(event) {
 </script>
 
 <template>
-  <div class="layout-container" :class="[{ ...containerClass }]">
-    <div class="layout-content-wrapper">
-      <div class="layout-content">
-        <slot />
+  <div class="layout-preloader-container">
+    <div>
+      <div class="layout-preloader">
+        <div class="layout-container" :class="[{ ...containerClass }]">
+          <div class="layout-content-wrapper">
+            <div class="layout-content">
+              <slot />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
