@@ -15,10 +15,17 @@ function navigateToPage() {
   <div class="flex justify-content-center align-items-center">
     <p class="centered-message">
       {{ message }}
-      <span
-        class="link"
+      <a
+        class="
+          text-600
+          cursor-pointer
+          hover:text-primary
+          cursor-pointer
+          ml-auto
+          transition-colors
+          transition-duration-300"
         @click="navigateToPage"
-      >{{ actionText }}</span>
+      >{{ actionText }}</a>
     </p>
   </div>
 </template>

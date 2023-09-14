@@ -96,7 +96,7 @@ onMounted(() => {
     <!-- Card  -->
     <div
       class="border-1 surface-border surface-card border-round py-6 px-5 md:px-7 z-1"
-      style="max-width: 500px;"
+      style="width: 500px;"
     >
       <div class="mb-4">
         <div class="text-1000 text-xl font-bold">
@@ -111,6 +111,17 @@ onMounted(() => {
       <!-- Auth Social Icons -->
       <OAuthSocialIcons
         :social-icons-data="socialIconsData"
+      />
+
+      <OAuthSocialIconsV2
+        :icons-data="[
+          { name: 'google', removable: false },
+          { name: 'github', removable: false },
+          { name: 'apple', removable: false },
+          { name: 'facebook', removable: false },
+          { name: 'microsoft', removable: false },
+          { name: 'twitter', removable: false },
+        ]"
       />
 
       <Divider
@@ -158,28 +169,39 @@ onMounted(() => {
 
           <!-- Remember Me -->
           <div
-            class="field-checkbox flex flex-wrap sm:align-content-start  align-content-evenly justify-content-between gap-1"
+            class="flex flex-wrap gap-3"
           >
-            <div class="flex align-items-center ">
+            <div>
               <Checkbox
                 id="rememberMe"
                 v-model="rememberMe"
                 name="rememberMe"
                 :binary="true"
               />
-              <label for="binary"><span class="font-medium ml-2 text-gray-600">Remember me</span>
+              <label for="binary">
+                <span class="font-medium ml-2 text-gray-600">
+                  Remember me
+                </span>
               </label>
             </div>
+
             <a
-              class="font-medium no-underline text-blue-500 text-right cursor-pointer "
+              class="
+                text-600
+                cursor-pointer
+                hover:text-primary
+                cursor-pointer
+                ml-auto
+                transition-colors
+                transition-duration-300"
             >Forgot password?</a>
           </div>
 
           <!-- Submit Button -->
           <Button
+            class="mt-5"
             type="submit"
             label="Sign In"
-            class="mt-2"
           />
           <AuthRedirectMessage
             class="mt-2"
@@ -189,14 +211,14 @@ onMounted(() => {
           />
         </form>
       </div>
-    </div>
-    <div class="flex justify-content-center align-items-center mt-3">
-      <DynamicYear
-        :font-size="{ class: 'text-xs' }"
-        :font-weight="{ class: 'font-base' }"
-        :text-color="{ class: 'text-400' }"
-        message="ALL RIGHTS RESERVED"
-      />
+      <div class="flex justify-content-center align-items-center mt-5">
+        <DynamicYear
+          :font-size="{ class: 'text-xs' }"
+          :font-weight="{ class: 'font-base' }"
+          :text-color="{ class: 'text-400' }"
+          message="ALL RIGHTS RESERVED"
+        />
+      </div>
     </div>
   </div>
 </template>

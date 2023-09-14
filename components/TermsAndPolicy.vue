@@ -12,8 +12,29 @@ function openPrivacyPolicy() {
 <template>
   <div style="text-align:justify">
     By proceeding, you consent to <strong>OneDP app </strong>
-    <a class="link" @click="openTermsOfService">Terms of Service</a> and
-    <a class="link" @click="openPrivacyPolicy">Privacy Policy</a>, as well as to receive occasional emails containing updates.
+    <a
+      class="
+          underline
+          text-600
+          cursor-pointer
+          hover:text-primary
+          cursor-pointer
+          ml-auto
+          transition-colors
+          transition-duration-300"
+      @click="openTermsOfService"
+    >Terms of Service</a> and
+    <a
+      class="
+          underline
+          text-600
+          cursor-pointer
+          hover:text-primary
+          cursor-pointer
+          ml-auto
+          transition-colors
+          transition-duration-300" @click="openPrivacyPolicy"
+    >Privacy Policy</a>, as well as to receive occasional emails containing updates.
   </div>
 </template>
 

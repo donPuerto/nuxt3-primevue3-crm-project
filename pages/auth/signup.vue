@@ -376,7 +376,7 @@ onMounted(() => {
               </div>
 
               <!-- Confirm Password -->
-              <div class="col-12 md:col-6 mb-4">
+              <div class="col-12 md:col-6">
                 <span class="p-float-label ">
                   <Password
                     id="confirmPassword"
