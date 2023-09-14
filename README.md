@@ -40,6 +40,7 @@ In case you'd like to customize the layout variables, open **_variables.scss** f
 * New Password
 * Verification
 * Access Denied
+* Reset Password
 * Error Page
 
 

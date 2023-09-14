@@ -1,15 +1,26 @@
-/* eslint-disable n/prefer-global/process */
+// eslint-disable-next-line no-undef
 export default defineNuxtConfig({
+  app: {
+    head: {
+      meta: [
+        { 'http-equiv': 'x-ua-compatible', 'content': 'IE=edge' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      ],
+      link: [
+        { rel: 'icon', href: '/favicon.ico' },
+      ],
+    },
+  },
   devtools: { enabled: true },
   typescript: {
     typeCheck: true,
   },
   css: [
-    '~/assets/css/main.css',
-    'primevue/resources/themes/saga-blue/theme.css',
-    'primevue/resources/primevue.css',
-    'primeicons/primeicons.css',
-    'primeflex/primeflex.css',
+    'primevue/resources/themes/lara-light-blue/theme.css',
+    // 'primevue/resources/primevue.css',
+    // 'primeicons/primeicons.css',
+    // 'primeflex/primeflex.css',
+    '~/assets/styles.scss',
   ],
 
   build: {

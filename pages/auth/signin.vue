@@ -80,14 +80,11 @@ function navigateToProfile() {
 function resetFormField() {
   resetObjectProperties(signInData)
   submitted.value = false
-}
-
-function navigateToRegister() {
-  router.push('/auth/register')
+  v$.value.$reset()
 }
 
 onMounted(() => {
-  resetObjectProperties(signInData)
+  resetFormField()
 })
 </script>
 
