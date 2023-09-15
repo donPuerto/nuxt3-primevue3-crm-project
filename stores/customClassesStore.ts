@@ -5,13 +5,13 @@ export const useCustomClassesStore = defineStore({
   state: () => ({
     socialAuthIcons: {
       iconDimensions: {
-        width: 30,
-        height: 30,
+        width: 23,
+        height: 23,
       },
       container: {
         justifyContent: 'justify-content-center',
         alignItems: 'align-items-center',
-        gap: 'gap-3',
+        gap: 'gap-4',
 
       },
 

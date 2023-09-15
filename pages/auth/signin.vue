@@ -32,17 +32,6 @@ const v$ = useVuelidate(rules, signInData)
 // Router
 const router = useRouter()
 
-// Initials
-const socialIconsData = [
-  {
-    name: 'google',
-  },
-  {
-    name: 'github',
-  },
-  // Add more objects for other icons as needed
-]
-
 // Methods
 async function handleSignin(isFormValid: boolean) {
   // Submitterd to turn true, because I submitted the form
@@ -110,10 +99,13 @@ onMounted(() => {
 
       <!-- Auth Social Icons -->
       <OAuthSocialIcons
-        :social-icons-data="socialIconsData"
+        :social-icons-data=" [
+          { name: 'google' },
+          { name: 'github' },
+        ]"
       />
 
-      <OAuthSocialIconsV2
+      <!-- <OAuthSocialIconsV2
         :icons-data="[
           { name: 'google', removable: false },
           { name: 'github', removable: false },
@@ -122,7 +114,7 @@ onMounted(() => {
           { name: 'microsoft', removable: false },
           { name: 'twitter', removable: false },
         ]"
-      />
+      /> -->
 
       <Divider
         align="center"

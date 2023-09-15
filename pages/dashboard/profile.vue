@@ -1,13 +1,19 @@
 <script setup>
 // Meta
 definePageMeta({
-  layout: 'dashboard',
+  layout: 'default',
   middleware: 'auth',
+  meta: {
+    breadcrumb: ['Dashboard', 'Profile'],
+  },
 })
+
+const { layoutConfig } = useLayout()
 </script>
 
 <template>
   <div>Profile</div>
+  <LayoutsDefaultAppTest />
 </template>
 
 <style>
