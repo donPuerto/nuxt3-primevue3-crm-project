@@ -1,15 +1,27 @@
-# Top-most editor configuration file
+# top-most EditorConfig file
 root = true
 
-# Default settings for all files
+# Unix-style newlines with a newline ending every file
 [*]
-indent_style = space
-indent_size = 2
 end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
 insert_final_newline = true
 
-# Settings for JavaScript files
+# Set the default indent style and size for JavaScript and TypeScript files
 [*.js]
-indent_size = 4
+indent_style = space
+indent_size = 2
+
+[*.ts]
+indent_style = space
+indent_size = 2
+
+# Ignore formatting for files with a .css extension
+[*.css]
+indent_size = unset
+
+# Additional files or patterns to exclude
+# For example, if you have JSX files with inline CSS
+[src/**/*.jsx]
+indent_size = unset
+
+

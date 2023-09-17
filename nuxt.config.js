@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 export default defineNuxtConfig({
   app: {
     head: {
@@ -13,14 +12,17 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
+
   typescript: {
     typeCheck: true,
   },
+
   css: [
     'primevue/resources/primevue.css',
     'primeicons/primeicons.css',
     'primeflex/primeflex.css',
-    '~/assets/styles.scss',
+    'prismjs/themes/prism-coy.css',
+    '@/assets/styles.scss',
   ],
 
   build: {
@@ -33,6 +35,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/google-fonts',
+    'nuxt-typed-router',
+    // '@vue-macros/nuxt',
+   
   ],
   piniaPersistedstate: {
     storage: 'localStorage',
@@ -45,22 +50,45 @@ export default defineNuxtConfig({
       Nunito: [400, 500, 600, 700],
     },
   },
+  // macros: {
+  //   reactivityTransform: true,
+  // },
   imports: {
     dirs: [
-      './middleware/**',
-      'composables',
-      'composables/*/index.{ts,js,mjs,mts}',
-      './composables/**',
-      './stores',
+       // scan all modules within given directory
+      'composables/**',
+      'stores',
     ],
   },
-  // If you want to auto-import components based only on its name, not path, then you need to set pathPrefix option to false using extended form of the configuration object
   components: [
     {
-      path: '~/components', pathPrefix: true,
+      path: '~/components',
+      pathPrefix: false,
+      extensions: ['.vue'],
     },
-
+    {
+      "dirs": [
+        {
+          "path": "~/components/global",
+          "global": true
+        },
+        "~/components"
+      ],
+    }
+    
   ],
+
+  // components: {
+  //   dirs: [
+  //     {
+  //       extensions: ['vue'],
+  //       global: true,
+  //       path: '~/components/common/',
+  //       pathPrefix: false,
+  //     },
+  //   ],
+  // },
+
   supabase: {
     redirectOptions: {
       login: '/auth/signin',
@@ -72,6 +100,8 @@ export default defineNuxtConfig({
       },
     },
   },
+  // Pinia Auto imports
+  // import { defineStore } from 'pinia'
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate'],
   },

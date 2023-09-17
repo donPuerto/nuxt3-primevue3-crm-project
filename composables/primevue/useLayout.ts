@@ -1,5 +1,4 @@
-export function useLayout() {
-  const layoutConfig = reactive({
+const layoutConfig = reactive({
     ripple: false,
     inputStyle: 'outlined',
     menuMode: 'static',
@@ -7,9 +6,10 @@ export function useLayout() {
     colorScheme: 'light',
     theme: 'indigo',
     scale: 14,
-  })
+    darkTheme: false
+});
 
-  const layoutState = reactive({
+const layoutState = reactive({
     staticMenuDesktopInactive: false,
     overlayMenuActive: false,
     sidebarActive: false,
@@ -19,61 +19,64 @@ export function useLayout() {
     configSidebarVisible: false,
     staticMenuMobileActive: false,
     menuHoverActive: false,
-    activeMenuItem: null,
-  })
+    activeMenuItem: null
+});
 
-  const setScale = (scale) => {
-    layoutConfig.scale = scale
-  }
+export function useLayout() {
+    const setScale = (scale: number) => {
+        layoutConfig.scale = scale;
+    };
 
-  const setActiveMenuItem = (item) => {
-    layoutState.activeMenuItem = item.value || item
-  }
+    const setActiveMenuItem = (item: { value?: any } | null) => {
+        layoutState.activeMenuItem = item !== null && item.value !== undefined ? item.value : item;
+    };
+    
 
-  const onMenuToggle = () => {
-    if (layoutConfig.menuMode === 'overlay')
-      layoutState.overlayMenuActive = !layoutState.overlayMenuActive
+    const onMenuToggle = () => {
+        if (layoutConfig.menuMode === 'overlay') {
+            layoutState.overlayMenuActive = !layoutState.overlayMenuActive;
+        }
 
-    if (window.innerWidth > 991)
-      layoutState.staticMenuDesktopInactive = !layoutState.staticMenuDesktopInactive
+        if (window.innerWidth > 991) {
+            layoutState.staticMenuDesktopInactive = !layoutState.staticMenuDesktopInactive;
+        } else {
+            layoutState.staticMenuMobileActive = !layoutState.staticMenuMobileActive;
+        }
+    };
 
-    else
-      layoutState.staticMenuMobileActive = !layoutState.staticMenuMobileActive
-  }
+    const onProfileSidebarToggle = () => {
+        layoutState.profileSidebarVisible = !layoutState.profileSidebarVisible;
+    };
 
-  const onProfileSidebarToggle = () => {
-    layoutState.profileSidebarVisible = !layoutState.profileSidebarVisible
-  }
+    const onConfigSidebarToggle = () => {
+        layoutState.configSidebarVisible = !layoutState.configSidebarVisible;
+    };
 
-  const onConfigSidebarToggle = () => {
-    layoutState.configSidebarVisible = !layoutState.configSidebarVisible
-  }
+    
+    const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive || layoutState.overlaySubmenuActive);
 
-  const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive || layoutState.overlaySubmenuActive)
+    const isDarkTheme = computed(() => layoutConfig.darkTheme);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  const isDarkTheme = computed(() => layoutConfig.darkTheme)
+    const isDesktop = computed(() => window.innerWidth > 991);
 
-  const isDesktop = computed(() => window.innerWidth > 991)
+    const isSlim = computed(() => layoutConfig.menuMode === 'slim');
+    const isSlimPlus = computed(() => layoutConfig.menuMode === 'slim-plus');
 
-  const isSlim = computed(() => layoutConfig.menuMode === 'slim')
-  const isSlimPlus = computed(() => layoutConfig.menuMode === 'slim-plus')
+    const isHorizontal = computed(() => layoutConfig.menuMode === 'horizontal');
 
-  const isHorizontal = computed(() => layoutConfig.menuMode === 'horizontal')
-
-  return {
-    layoutConfig: toRefs(layoutConfig),
-    layoutState: toRefs(layoutState),
-    setScale,
-    onMenuToggle,
-    isSidebarActive,
-    isDarkTheme,
-    setActiveMenuItem,
-    onProfileSidebarToggle,
-    onConfigSidebarToggle,
-    isSlim,
-    isSlimPlus,
-    isHorizontal,
-    isDesktop,
-  }
+    return {
+        layoutConfig: toRefs(layoutConfig),
+        layoutState: toRefs(layoutState),
+        setScale,
+        onMenuToggle,
+        isSidebarActive,
+        isDarkTheme,
+        setActiveMenuItem,
+        onProfileSidebarToggle,
+        onConfigSidebarToggle,
+        isSlim,
+        isSlimPlus,
+        isHorizontal,
+        isDesktop
+    };
 }

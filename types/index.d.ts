@@ -1,7 +1,11 @@
 // Import types from other folder
 
+// core
+export * from './core/app.types';
+
 // components
 export * from './components/toast.types';
+
 // auth
 export * from './auth/signup.types';
 export * from './auth/signin.types';

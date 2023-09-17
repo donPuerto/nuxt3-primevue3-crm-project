@@ -14,7 +14,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021,
   },
-  plugins: ['vue', '@typescript-eslint'],
+  plugins: ["antfu"],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -29,9 +29,14 @@ module.exports = {
     'vue/custom-event-name-casing': 'off',
     'vue/no-v-model-argument': 'off',
     'vue/no-template-shadow': 'off',
-
     'vue/multi-word-component-names': 'off',
     'vue/no-reserved-component-names': 'off',
+    'vue/component-tags-order': [
+      'error',
+      {
+        order: ['script', 'template', 'style']
+      }
+    ],
 
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',

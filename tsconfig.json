@@ -5,12 +5,13 @@
     // ... other options ...
     "typeRoots": [
       "node_modules/@types",
-      "gotrue-js/src/lib"
+      "gotrue-js/src/lib",
+      "types"
     ],
     "types": [
       "node"
     ],
-    "baseUrl": "./",
+    "baseUrl": "types",
     "paths": {
       "@/*": [
         "src/*"
