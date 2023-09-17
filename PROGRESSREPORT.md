@@ -4,6 +4,9 @@
 ### Timeline
 Sunday 17/09/2023
 - Messed up day. No progress at all, spent alot of working on ESLINT
+- So far, @antfu/eslint-config works on Nuxt 3
+- Primevue conversation from Vite to Nuxt, Failed! but got an idea now
+- Supabase, not work for today
 
 
 Saturday 16/09/2023
