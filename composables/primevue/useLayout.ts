@@ -30,7 +30,7 @@ export function useLayout() {
     const setActiveMenuItem = (item: { value?: any } | null) => {
         layoutState.activeMenuItem = item !== null && item.value !== undefined ? item.value : item;
     };
-    
+
 
     const onMenuToggle = () => {
         if (layoutConfig.menuMode === 'overlay') {
@@ -52,7 +52,7 @@ export function useLayout() {
         layoutState.configSidebarVisible = !layoutState.configSidebarVisible;
     };
 
-    
+
     const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive || layoutState.overlaySubmenuActive);
 
     const isDarkTheme = computed(() => layoutConfig.darkTheme);

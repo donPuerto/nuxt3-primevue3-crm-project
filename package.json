@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.7.1",
+    "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/kit": "^3.7.3",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/google-fonts": "^3.0.2",
@@ -51,5 +52,4 @@
   "lint-staged": {
     "*": "eslint --fix"
   }
-
 }

@@ -3,5 +3,10 @@
 </script>
 
 <template>
-        <slot />
+	<slot />
+	<div>
+
+
+		hello world
+	</div>
 </template>
