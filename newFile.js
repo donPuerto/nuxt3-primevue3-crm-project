@@ -37,7 +37,6 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     'nuxt-typed-router',
     // '@vue-macros/nuxt',
-
   ],
   piniaPersistedstate: {
     storage: 'localStorage',
@@ -75,11 +74,18 @@ export default defineNuxtConfig({
         "~/components"
       ],
     }
-
   ],
 
-
-
+  // components: {
+  //   dirs: [
+  //     {
+  //       extensions: ['vue'],
+  //       global: true,
+  //       path: '~/components/common/',
+  //       pathPrefix: false,
+  //     },
+  //   ],
+  // },
   supabase: {
     redirectOptions: {
       login: '/auth/signin',
@@ -102,9 +108,6 @@ export default defineNuxtConfig({
       BASE_URL: process.env.BASE_URL || 'http://localhost:3000',
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
-
     },
-
   },
-
-})
+});
