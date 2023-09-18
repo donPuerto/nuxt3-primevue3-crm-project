@@ -6,6 +6,7 @@ Monday 18/09/2023
 - Very Frustrating, still the same problem, nuxt eslint and auto code formatting
 - Looks good today, was able to render Sidebar and Toolbar
 - But need to dissect Apollo Theme, and overhaul into my own preference
+- Pending: @antuf/eslint-config not working into my setup
 
 
 Sunday 17/09/2023
