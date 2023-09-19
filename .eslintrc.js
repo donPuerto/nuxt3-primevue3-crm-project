@@ -8,11 +8,11 @@ module.exports = {
     browser: true,
     node: true,
     es2021: true,
-
   },
   extends: '@antfu',
-  plugins: ["antfu"],
+  // plugins: ["antfu"],
   rules: {
+    // 'no-console': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-return-assign': 'off',
@@ -44,17 +44,17 @@ module.exports = {
     'n/prefer-global/process': 'off',
 
   },
-  overrides: [
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
-      ],
-    },
-  ],
-  // globals: {
-  //   'defineNuxtConfig': 'readonly',
-  //   'defineNuxtPlugin': 'readonly',
-  //   '@typescript-eslint/ban-ts-comment': 'off',
-  // },
+  // overrides: [
+  //   {
+  //     files: [
+  //       '**/__tests__/*.{j,t}s?(x)',
+  //       '**/tests/unit/**/*.spec.{j,t}s?(x)',
+  //     ],
+  //   },
+  // ],
+  globals: {
+    'defineNuxtConfig': 'readonly',
+    'defineNuxtPlugin': 'readonly',
+    '@typescript-eslint/ban-ts-comment': 'off',
+  },
 }
