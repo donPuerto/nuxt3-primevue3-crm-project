@@ -10,10 +10,7 @@ module.exports = {
     es2021: true,
 
   },
-  extends: ['@antfu', "@nuxtjs/eslint-config", "@nuxtjs/eslint-config"],
-  parserOptions: {
-    ecmaVersion: 2021,
-  },
+  extends: '@antfu',
   plugins: ["antfu"],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

@@ -1,21 +1,21 @@
 {
   // https://v3.nuxtjs.org/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json",
-  "compilerOptions": {
-    // ... other options ...
-    "typeRoots": [
-      "node_modules/@types",
-      "gotrue-js/src/lib",
-      "types"
-    ],
-    "types": [
-      "node"
-    ],
-    "baseUrl": "types",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
-  }
+  "extends": "./.nuxt/tsconfig.json"
+  // "compilerOptions": {
+  //   // ... other options ...
+  //   "typeRoots": [
+  //     "node_modules/@types",
+  //     "gotrue-js/src/lib",
+  //     "types"
+  //   ],
+  //   "types": [
+  //     "node"
+  //   ],
+  //   "baseUrl": "types",
+  //   "paths": {
+  //     "@/*": [
+  //       "src/*"
+  //     ]
+  //   }
+  // }
 }
