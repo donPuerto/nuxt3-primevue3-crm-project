@@ -1,5 +1,23 @@
-<script lang="ts" setup>
+<script setup>
 const { layoutConfig, layoutState, isSidebarActive } = useLayout();
+
+const outsideClickListener = ref(null);
+const sidebarRef = ref(null);
+const topbarRef = ref(null);
+
+watch(isSidebarActive, (newVal) => {
+	if (newVal) {
+		bindOutsideClickListener();
+	} else {
+		unbindOutsideClickListener();
+	}
+});
+
+onBeforeUnmount(() => {
+	unbindOutsideClickListener();
+});
+
+
 const containerClass = computed(() => {
 	return {
 		'layout-light': layoutConfig.colorScheme.value === 'light',
@@ -25,6 +43,33 @@ const containerClass = computed(() => {
 	};
 });
 
+const bindOutsideClickListener = () => {
+	if (!outsideClickListener.value) {
+		outsideClickListener.value = (event) => {
+			if (isOutsideClicked(event)) {
+				layoutState.overlayMenuActive.value = false;
+				layoutState.overlaySubmenuActive.value = false;
+				layoutState.staticMenuMobileActive.value = false;
+				layoutState.menuHoverActive.value = false;
+			}
+		};
+		document.addEventListener('click', outsideClickListener.value);
+	}
+};
+
+const unbindOutsideClickListener = () => {
+	if (outsideClickListener.value) {
+		document.removeEventListener('click', outsideClickListener);
+		outsideClickListener.value = null;
+	}
+};
+
+const isOutsideClicked = (event) => {
+	const sidebarEl = sidebarRef?.value.$el;
+	const topbarEl = topbarRef?.value.$el.querySelector('.topbar-menubutton');
+
+	return !(sidebarEl.isSameNode(event.target) || sidebarEl.contains(event.target) || topbarEl.isSameNode(event.target) || topbarEl.contains(event.target));
+};
 
 onMounted(() => {
 	console.log('Default Layout')
@@ -41,6 +86,8 @@ onMounted(() => {
 				<slot />
 			</div>
 		</div>
+		<Toast></Toast>
+		<div class="layout-mask"></div>
 	</div>
 </template>
 

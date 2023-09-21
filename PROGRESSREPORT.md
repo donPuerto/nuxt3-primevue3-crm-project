@@ -2,6 +2,15 @@
 > This timeline will serve as a comprehensive record of project improvements, documenting all progress made throughout the duration of the project.
 
 ### Timeline
+Thursday  21/09/2023
+- back on my feet but, Im working on it
+- Setting up correctly the sidebar, probably next is refactoring cos I want this as a component
+
+
+Wednesday  20/09/2023
+- Nothing so far, got a bad day
+
+
 Tuesday  19/09/2023
 - I want to fix @antfu/eslint-config
 

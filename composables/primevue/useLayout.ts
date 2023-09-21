@@ -33,7 +33,6 @@ export function useLayout() {
 
 
   const onMenuToggle = () => {
-    console.log('layoutConfig.menuMode', layoutConfig.menuMode)
     // By default, menuMode is static
     // If overlay is true, overlayMenuActive is set to true
     if (layoutConfig.menuMode === 'overlay') {
