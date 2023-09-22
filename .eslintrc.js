@@ -31,8 +31,8 @@ module.exports = {
     'vue/component-tags-order': [
       'error',
       {
-        order: ['script', 'template', 'style']
-      }
+        order: ['script', 'template', 'style'],
+      },
     ],
 
     '@typescript-eslint/no-unused-vars': 'off',
@@ -44,17 +44,17 @@ module.exports = {
     'n/prefer-global/process': 'off',
 
   },
-  // overrides: [
-  //   {
-  //     files: [
-  //       '**/__tests__/*.{j,t}s?(x)',
-  //       '**/tests/unit/**/*.spec.{j,t}s?(x)',
-  //     ],
-  //   },
-  // ],
-  globals: {
-    'defineNuxtConfig': 'readonly',
-    'defineNuxtPlugin': 'readonly',
-    '@typescript-eslint/ban-ts-comment': 'off',
-  },
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+      ],
+    },
+  ],
+  // globals: {
+  //   'defineNuxtConfig': 'readonly',
+  //   'defineNuxtPlugin': 'readonly',
+  //   '@typescript-eslint/ban-ts-comment': 'off',
+  // },
 }

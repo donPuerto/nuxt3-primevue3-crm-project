@@ -6,8 +6,8 @@ const layoutConfig = reactive({
   colorScheme: 'light',
   theme: 'indigo',
   scale: 14,
-  darkTheme: false
-});
+  darkTheme: false,
+})
 
 const layoutState = reactive({
   staticMenuDesktopInactive: false,
@@ -19,54 +19,51 @@ const layoutState = reactive({
   configSidebarVisible: false,
   staticMenuMobileActive: false,
   menuHoverActive: false,
-  activeMenuItem: null
-});
+  activeMenuItem: null,
+})
 
 export function useLayout() {
   const setScale = (scale: number) => {
-    layoutConfig.scale = scale;
-  };
+    layoutConfig.scale = scale
+  }
 
   const setActiveMenuItem = (item: { value?: any } | null) => {
-    layoutState.activeMenuItem = item !== null && item.value !== undefined ? item.value : item;
-  };
-
+    layoutState.activeMenuItem = item !== null && item.value !== undefined ? item.value : item
+  }
 
   const onMenuToggle = () => {
     // By default, menuMode is static
     // If overlay is true, overlayMenuActive is set to true
-    if (layoutConfig.menuMode === 'overlay') {
-      layoutState.overlayMenuActive = !layoutState.overlayMenuActive;
-    }
+    if (layoutConfig.menuMode === 'overlay')
+      layoutState.overlayMenuActive = !layoutState.overlayMenuActive
 
     // Is Desktop or Mobile?
     // It return true or false
-    if (window.innerWidth > 991) {
-      layoutState.staticMenuDesktopInactive = !layoutState.staticMenuDesktopInactive;
-    } else {
-      layoutState.staticMenuMobileActive = !layoutState.staticMenuMobileActive;
-    }
-  };
+    if (window.innerWidth > 991)
+      layoutState.staticMenuDesktopInactive = !layoutState.staticMenuDesktopInactive
+
+    else
+      layoutState.staticMenuMobileActive = !layoutState.staticMenuMobileActive
+  }
 
   const onProfileSidebarToggle = () => {
-    layoutState.profileSidebarVisible = !layoutState.profileSidebarVisible;
-  };
+    layoutState.profileSidebarVisible = !layoutState.profileSidebarVisible
+  }
 
   const onConfigSidebarToggle = () => {
-    layoutState.configSidebarVisible = !layoutState.configSidebarVisible;
-  };
+    layoutState.configSidebarVisible = !layoutState.configSidebarVisible
+  }
 
+  const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive || layoutState.overlaySubmenuActive)
 
-  const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive || layoutState.overlaySubmenuActive);
+  const isDarkTheme = computed(() => layoutConfig.darkTheme)
 
-  const isDarkTheme = computed(() => layoutConfig.darkTheme);
+  const isDesktop = computed(() => window.innerWidth > 991)
 
-  const isDesktop = computed(() => window.innerWidth > 991);
+  const isSlim = computed(() => layoutConfig.menuMode === 'slim')
+  const isSlimPlus = computed(() => layoutConfig.menuMode === 'slim-plus')
 
-  const isSlim = computed(() => layoutConfig.menuMode === 'slim');
-  const isSlimPlus = computed(() => layoutConfig.menuMode === 'slim-plus');
-
-  const isHorizontal = computed(() => layoutConfig.menuMode === 'horizontal');
+  const isHorizontal = computed(() => layoutConfig.menuMode === 'horizontal')
 
   return {
     layoutConfig: toRefs(layoutConfig),
@@ -81,6 +78,6 @@ export function useLayout() {
     isSlim,
     isSlimPlus,
     isHorizontal,
-    isDesktop
-  };
+    isDesktop,
+  }
 }
