@@ -4,7 +4,7 @@ export function useAuth() {
   // declaration
 
   const router: any = useRouter()
-  const supabase = useSupabaseAuthClient<Database>()
+  const supabase = useSupabaseClient<Database>()
   const config = useRuntimeConfig()
   const redirectTo = `${config.public.BASE_URL}/confirm`
 

@@ -7,7 +7,9 @@
     "pinia",
     "prismjs",
     "Roboto",
-    "signin"
+    "signin",
+    "vuelidate",
+    "vueuse"
   ],
 	"eslint.validate": [
     "javascript",
