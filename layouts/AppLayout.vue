@@ -3,10 +3,8 @@
 </script>
 
 <template>
-	<slot />
-	<div>
-
-
-		hello world
-	</div>
+  <slot />
+  <div>
+    hello world
+  </div>
 </template>

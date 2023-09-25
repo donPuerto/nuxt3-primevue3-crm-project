@@ -43,10 +43,8 @@ export function useAuth() {
   }
 
   const signInWithPassword = async (email: string, password: string) => {
-    console.log('email', email)
-    console.log('password', password)
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })

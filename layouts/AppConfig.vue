@@ -5,7 +5,6 @@ import InputSwitch from 'primevue/inputswitch'
 import Sidebar from 'primevue/sidebar'
 import PrimeVue from 'primevue/config'
 
-
 defineProps({
   simple: {
     type: Boolean,

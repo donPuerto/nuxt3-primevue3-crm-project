@@ -1,9 +1,9 @@
 export function useUtilService() {
   /**
- * Generates a function comment for the given function body.
- *
- * @return {object} An object containing the resetObjectProperties function.
- */
+   * Generates a function comment for the given function body.
+   *
+   * @return An object containing the resetObjectProperties function.
+   */
   function resetObjectProperties<T extends Record<string, any>>(obj: T) {
     for (const key in obj) {
       if (Object.hasOwnProperty.call(obj, key)) {
