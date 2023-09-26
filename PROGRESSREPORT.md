@@ -2,6 +2,13 @@
 > This timeline will serve as a comprehensive record of project improvements, documenting all progress made throughout the duration of the project.
 
 ### Timeline
+Monday 26/09/2023
+- Creating v2 on this app
+- Setting up again antful eslint, as it is better on prettier or the setup
+- Renaming Repo
+- Targetting to fully setup the version2 before going to merge the master
+
+
 Thursday  21/09/2023
 - back on my feet but, Im working on it
 - Setting up correctly the sidebar, probably next is refactoring cos I want this as a component
