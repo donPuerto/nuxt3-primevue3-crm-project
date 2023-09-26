@@ -8,7 +8,7 @@
       <span class="text-blue-600">OneDP CRM App</span>
     </div>
     <div class="text-700 mb-8 text-sm">
-      Tech-enable the CRM system.
+      Tech-enable the CRM system...
     </div>
 
     <div class="flex justify-content-center gap-2 px-5">
