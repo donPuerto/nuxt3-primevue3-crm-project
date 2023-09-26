@@ -8,7 +8,7 @@ const topbarRef = ref(null)
 watch(isSidebarActive, (newVal) => {
   if (newVal)
     bindOutsideClickListener()
-	 else
+  else
     unbindOutsideClickListener()
 })
 
