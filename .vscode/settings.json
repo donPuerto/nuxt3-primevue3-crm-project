@@ -2,7 +2,10 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "antfu",
+    "blockui",
     "nuxtjs",
-    "pinia"
+    "pinia",
+    "prismjs",
+    "virtualscroller"
   ]
 }
