@@ -8,11 +8,7 @@
       <span class="text-blue-600">OneDP CRM App</span>
     </div>
     <div class="text-700 mb-8 text-sm">
-      My Goal is embarking on an ambitious project to enhance and modernize our existing Customer Relationship
-      Management (CRM) system. The CRM system plays a pivotal role in our business operations by managing customer
-      interactions, sales processes, and customer data. The primary goal of this project is to improve our CRM system's
-      functionality, scalability, and user experience, ensuring it continues to meet the evolving needs of our
-      organization and customers.
+      Tech-enable the CRM system.
     </div>
 
     <div class="flex justify-content-center gap-2 px-5">
