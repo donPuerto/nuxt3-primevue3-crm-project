@@ -7,4 +7,9 @@ export default antfu({
   vue: true,
   jsonc: false,
   yml: false,
+}, {
+  files: ['**/*.vue'],
+  rules: {
+    'vue/operator-linebreak': ['error', 'before'],
+  },
 })

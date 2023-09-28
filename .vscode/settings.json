@@ -6,6 +6,7 @@
     "nuxtjs",
     "pinia",
     "prismjs",
+    "signin",
     "virtualscroller"
   ]
 }

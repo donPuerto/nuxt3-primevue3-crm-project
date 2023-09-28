@@ -40,9 +40,18 @@ export default defineNuxtConfig({
       baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     },
   },
-  // supabase Options
+  // supabase
   supabase: {
     // Options
+    redirectOptions: {
+      login: '/auth/signin',
+      callback: '/confirm',
+    },
+    clientOptions: {
+      auth: {
+        persistSession: true,
+      },
+    },
   },
   pinia: {
     autoImports: [
@@ -54,4 +63,27 @@ export default defineNuxtConfig({
   piniaPersistedstate: {
     storage: 'localStorage',
   },
+  imports: {
+    dirs: [
+      // scan all modules within given directory
+      'composables/**',
+      'stores',
+    ],
+  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+      extensions: ['.vue'],
+    },
+    // {
+    //   dirs: [
+    //     {
+    //       path: '~/components/global',
+    //       global: true,
+    //     },
+    //     '~/components',
+    //   ],
+    // },
+  ],
 })
