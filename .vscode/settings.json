@@ -1,0 +1,12 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "antfu",
+    "blockui",
+    "nuxtjs",
+    "pinia",
+    "prismjs",
+    "signin",
+    "virtualscroller"
+  ]
+}
