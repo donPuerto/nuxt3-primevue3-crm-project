@@ -27,6 +27,7 @@ logs
 # updating repo
 assets/
 components/
+composables/
 pages/
 plugins/
 stores/
