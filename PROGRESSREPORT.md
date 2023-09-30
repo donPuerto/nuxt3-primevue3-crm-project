@@ -2,6 +2,11 @@
 > This timeline will serve as a comprehensive record of project improvements, documenting all progress made throughout the duration of the project.
 
 ### Timeline
+Saturday 30/09/2023
+- No update atm
+
+
+
 Monday 26/09/2023
 - Creating v2 on this app
 - Setting up again antful eslint, as it is better on prettier or the setup

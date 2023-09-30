@@ -94,9 +94,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Public config
     public: {
+      // eslint-disable-next-line node/prefer-global/process
       BASE_URL: process.env.BASE_URL || 'http://localhost:3000',
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
     },
   },
 })
+z
