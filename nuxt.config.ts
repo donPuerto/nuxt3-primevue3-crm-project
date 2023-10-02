@@ -31,7 +31,9 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+
   ],
+
   runtimeConfig: {
     // Private config that is only available on the server
     public: {
