@@ -2,6 +2,10 @@
 > This timeline will serve as a comprehensive record of project improvements, documenting all progress made throughout the duration of the project.
 
 ### Timeline
+Saturday 02/110/2023
+- Beer month, no big changes. Stuck on ESlint and dynamic form, not in the good mood to fast struck. Hope able to make a good changes
+
+
 Saturday 30/09/2023
 - No update atm
 
